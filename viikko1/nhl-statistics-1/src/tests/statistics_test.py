@@ -32,7 +32,7 @@ class TestStatistics(unittest.TestCase):
         for player in team:
             self.assertEqual(player.team, "EDM")
 
-    def test_top(self):
+    def test_top_points(self):
         sorted = self.statistics.top(2)
 
         for i in sorted:
@@ -41,3 +41,23 @@ class TestStatistics(unittest.TestCase):
         self.assertEqual(sorted[0], self.statistics._players[4])
         self.assertEqual(sorted[1], self.statistics._players[1])
         self.assertEqual(sorted[2], self.statistics._players[3])
+
+    def test_top_goals(self):
+        sorted = self.statistics.top(2, 2)
+
+        for i in sorted:
+            print(i)
+
+        self.assertEqual(sorted[0], self.statistics._players[1])
+        self.assertEqual(sorted[1], self.statistics._players[3])
+        self.assertEqual(sorted[2], self.statistics._players[2])
+
+    def test_top_assists(self):
+        sorted = self.statistics.top(2, 3)
+
+        for i in sorted:
+            print(i)
+
+        self.assertEqual(sorted[0], self.statistics._players[4])
+        self.assertEqual(sorted[1], self.statistics._players[3])
+        self.assertEqual(sorted[2], self.statistics._players[1])

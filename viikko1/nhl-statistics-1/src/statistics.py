@@ -3,7 +3,7 @@ def sort_by(player, category):
         return player.points
     elif category == 2:
         return player.goals
-    elif category == 3:
+    else:
         return player.assists
 
 class Statistics:
