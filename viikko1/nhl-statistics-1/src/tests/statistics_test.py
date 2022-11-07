@@ -33,7 +33,7 @@ class TestStatistics(unittest.TestCase):
             self.assertEqual(player.team, "EDM")
 
     def test_top(self):
-        sorted = self.statistics.top(3)
+        sorted = self.statistics.top(2)
 
         for i in sorted:
             print(i)
