@@ -21,8 +21,11 @@ def main():
             )
 
             players.append(player)
+            for player in players:
+                players.sort(key=lambda player: player.points, reverse=True)
 
     print(f"Players from FIN {datetime.datetime.now()}:")
+    print("")
 
     for player in players:
         print(player)
