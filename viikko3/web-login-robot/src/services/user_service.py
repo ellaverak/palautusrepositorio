@@ -1,3 +1,4 @@
+import re
 from entities.user import User
 from repositories.user_repository import (
     user_repository as default_user_repository
@@ -9,6 +10,21 @@ class UserInputError(Exception):
 
 
 class AuthenticationError(Exception):
+    pass
+
+
+class UsernameAlreadyInuse(Exception):
+    pass
+
+
+class InvalidUsername(Exception):
+    pass
+
+
+class InvalidPassword(Exception):
+    pass
+
+class PasswordConfirmationfailed(Exception):
     pass
 
 
@@ -40,7 +56,17 @@ class UserService:
         if not username or not password:
             raise UserInputError("Username and password are required")
 
-        # toteuta loput tarkastukset tänne ja nosta virhe virhetilanteissa
+        if not self._user_repository.find_by_username(username) == None:
+            raise UsernameAlreadyInuse("Username already in use")
+
+        if not re.match("[a-z]{3,}", username):
+            raise InvalidUsername("Invalid username")
+
+        if not re.match("([a-z0-9]){8,}", password):
+            raise InvalidPassword("Invalid password")
+
+        if password != password_confirmation:
+            raise PasswordConfirmationfailed("Password confirmation failed")
 
 
 user_service = UserService()
