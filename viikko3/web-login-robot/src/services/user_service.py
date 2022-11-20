@@ -62,6 +62,9 @@ class UserService:
         if not re.match("[a-z]{3,}", username):
             raise InvalidUsername("Invalid username")
 
+        if not re.match("[a-z]*[0-9][a-z0-9]*", password):
+            raise InvalidPassword("Invalid password")
+
         if not re.match("([a-z0-9]){8,}", password):
             raise InvalidPassword("Invalid password")
 
