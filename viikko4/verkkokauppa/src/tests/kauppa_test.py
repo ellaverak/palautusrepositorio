@@ -174,3 +174,23 @@ class TestKauppa(unittest.TestCase):
 
         self.pankki_mock.tilisiirto.assert_called_with(ANY, 3, ANY, ANY, ANY)
 
+    def test_palauta_tuote_varastoon(self):
+        def varasto_saldo(tuote_id):
+            if tuote_id == 1:
+                return 10
+
+        def varasto_hae_tuote(tuote_id):
+            if tuote_id == 1:
+                return Tuote(1, "maito", 5)
+
+        self.varasto_mock.saldo.side_effect = varasto_saldo
+        self.varasto_mock.hae_tuote.side_effect = varasto_hae_tuote
+
+        kauppa = Kauppa(self.varasto_mock, self.pankki_mock, self.viitegeneraattori_mock)
+
+        kauppa.aloita_asiointi()
+        kauppa.lisaa_koriin(1)
+        kauppa.poista_korista(1)
+
+        self.varasto_mock.hae_tuote.assert_called_with(1)
+
