@@ -1,3 +1,5 @@
+## Retrospektiivi
+
 Retrospektiivi on lyhyehkö tiiminjäsenten keskustelutuokio, 
 joka pidetään projektin tai projektin iteraation päättymisen jälkeen.
 Iteraatio voi olla esimerkiksi scrum sprintti. Retrospektiivin tarkoituksena on kartoittaa 
